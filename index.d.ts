@@ -24,6 +24,8 @@ export interface QueryFunction<T> {
 }
 
 export interface Connection {
+    connection: mysql.Connection;
+
     query: QueryFunction<Bluebird<any>>;
 
     beginTransaction(options?: mysql.QueryOptions): Bluebird<void>;
@@ -62,6 +64,8 @@ export interface PoolConnection extends Connection {
 }
 
 export interface Pool {
+    pool: mysql.Pool;
+
     getConnection(): Bluebird<PoolConnection>;
 
     releaseConnection(connection: PoolConnection): void;
